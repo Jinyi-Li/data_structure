@@ -25,16 +25,16 @@ public class MtwoSumLessEqual {
 
         int left = 0;
         int right = nums.length - 1;
-        while(left < right && right >= 0){
+        while(left < right){
             while((left < right) && (nums[left] + nums[right] < target)){
-                left = left + 1;
+                left++;
             }
 
             if(left < right && nums[left] + nums[right] == target){
                 return new int[]{left, right};
             }
 
-            right = right - 1;
+            right--;
         }
  
         return new int[0];
