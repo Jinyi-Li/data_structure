@@ -11,7 +11,7 @@ return [1, 2]
 
 因为这道题array是有序的，所以可以用two pointers！
 */
-public class MtwoSumII {
+public class MtwoSumLessEqual {
     
     /**
      * @param nums: an array of Integer
@@ -25,16 +25,16 @@ public class MtwoSumII {
 
         int left = 0;
         int right = nums.length - 1;
-        while(left < right && right >= 0){
+        while(left < right){
             while((left < right) && (nums[left] + nums[right] < target)){
-                left = left + 1;
+                left++;
             }
 
             if(left < right && nums[left] + nums[right] == target){
                 return new int[]{left, right};
             }
 
-            right = right - 1;
+            right--;
         }
  
         return new int[0];
