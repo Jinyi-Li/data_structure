@@ -34,7 +34,7 @@ class Solution {
                 left++;                                       
             }                                 
             
-            // Move forward right index.
+            // ALWAYS MOVE forward right index.
             right++;
         }
         

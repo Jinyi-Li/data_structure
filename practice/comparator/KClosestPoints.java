@@ -41,8 +41,8 @@ public class KClosestPoints {
         
         Point[] results = new Point[k];
         for(int i = 0; i < k; i++) {
-            // results[i] = pointList.get(i);
-            results[i] = pointHeap.poll();
+            results[i] = pointList.get(i);
+            // results[i] = pointHeap.poll();
         }
         return results;
     }
