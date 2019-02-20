@@ -11,6 +11,10 @@ public class ShortestCycle {
             return -1;
         }
 
+        if(data.length == 1) {
+            return -1;
+        }
+
         // Use a map of {number -> indexOfFirstOccurrence} to track each num.
         Map<Integer, Integer> numIndexMap = new HashMap<>();
         int minSoFar = Integer.MAX_VALUE;
@@ -21,14 +25,17 @@ public class ShortestCycle {
             }
             numIndexMap.put(data[i], i);
         }
-        System.out.println(minSoFar);
+
+        if(minSoFar == Integer.MAX_VALUE) {
+            return -1;
+        }
         return minSoFar;
     }
 
 
     public static void main(String[] args) {
         ShortestCycle solution = new ShortestCycle();
-        int[] data = {9,6,8,7,1,2,3,4,5,1};
-        solution.shortestCycle(data);
+        int[] data = {1,1};
+        System.out.println(solution.shortestCycle(data));
     }
 }
