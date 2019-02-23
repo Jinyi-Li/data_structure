@@ -11,7 +11,7 @@ public class MinChairs {
             return 0;
         }
 
-        // Sort (start, end) pairs by ascending order on "start".
+        // Sort (start, end) pairs in asce order by start time.
         Collections.sort(times, new Comparator<List<Integer>>() {
             @Override
             public int compare(List<Integer> a, List<Integer> b) {
@@ -22,6 +22,7 @@ public class MinChairs {
             }
         });
 
+        // Min-heap sorted by end time.
         PriorityQueue<Integer> endTimeHeap =
                 new PriorityQueue<>(times.size(), (a, b) -> {
                     if (a == b) {
