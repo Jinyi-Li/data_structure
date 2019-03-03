@@ -35,13 +35,16 @@ public class MinChairs {
 
         // add first elem to avoid empty heap.
         endTimeHeap.add(times.get(0).get(1));
+        
         for (int i = 1; i < times.size(); i++) {
             int startTime = times.get(i).get(0);
             int endTime = times.get(i).get(1);
+            
             if (startTime >= endTimeHeap.peek()) {
                 // No need to double count this chair.
                 endTimeHeap.poll();
             }
+            
             endTimeHeap.add(endTime);
         }
         System.out.println(endTimeHeap.size());
