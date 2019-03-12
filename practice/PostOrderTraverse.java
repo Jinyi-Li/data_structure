@@ -11,6 +11,7 @@ public class Solution {
             return;
         }
 
+        // push all the left's 
         Stack<Node> stack = new Stack<>();
         while(root != null) {
             stack.push(root);
@@ -20,8 +21,10 @@ public class Solution {
         Node previous = null;
         while(!stack.isEmpty()) {
             Node curr = stack.peek();
-
+            
+            // if has right child and not visited right yet
             if(curr.right != null && curr.right != previous) {
+                // push all left's from this right child
                 curr = curr.right;
                 while(curr != null) {
                     stack.push(curr);
