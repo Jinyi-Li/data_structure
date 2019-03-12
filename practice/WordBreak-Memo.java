@@ -30,8 +30,7 @@ public class WordBreak {
 
 
         for (int i = start; i < s.length(); i++) {
-            if (dict.contains(s.substring(start, i + 1))
-                    && isValidWord(s, i + 1, dict, isValidSubstring)) {
+            if (dict.contains(s.substring(start, i + 1)) && isValidWord(s, i + 1, dict, isValidSubstring)) {
                 return true;
             }
         }
