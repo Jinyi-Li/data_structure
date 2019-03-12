@@ -29,9 +29,9 @@ public class WordBreak {
         }
 
 
-        for (int end = start + 1; end <= s.length(); end++) {
-            if (dict.contains(s.substring(start, end))
-                    && isValidWord(s, end, dict, isValidSubstring)) {
+        for (int i = start; i < s.length(); i++) {
+            if (dict.contains(s.substring(start, i + 1))
+                    && isValidWord(s, i + 1, dict, isValidSubstring)) {
                 return true;
             }
         }
