@@ -20,9 +20,9 @@ class Solution {
             return null;
         }
         
+        // Push elems on the most left branches to the stack. (exactly the same as in-order traversal)
         Node head = null;
-        Node prev = null;
-        
+        Node prev = null;        
         Stack<Node> nodesToVisit = new Stack<>();
         Node tmp = root;        
         while(tmp != null){
@@ -30,17 +30,15 @@ class Solution {
             tmp = tmp.left;
         }
         
-        System.out.println(nodesToVisit.peek().val);
-        
         Node curr = root;
         while(!nodesToVisit.isEmpty()){
             curr = nodesToVisit.pop();
-            if(prev == null){
-                head = curr;
+            if(prev == null){   // this is the first elem to be poped (the smallest)
+                head = curr;    // store the smallest elem as "head" in order to return it as result
                 prev = curr;            
-            }else{
-                prev.right = curr;
-                curr.left = prev;
+            }else{                 // do the normal in-order traversal, and make:
+                prev.right = curr; // the smaller.right -> the larger
+                curr.left = prev;  // the larget.left -> the smaller
             }            
             
             if(curr.right != null){
@@ -52,9 +50,10 @@ class Solution {
             }
             prev = curr;
         }
-        
+        // connect the first and the last
         head.left = curr;
         curr.right = head;
+        // return the first (smallest)
         return head;
     }
     

@@ -18,7 +18,7 @@ public class WordBreak {
     }
 
     private boolean isValidWord(String s, int start, Set<String> dict, int[] isValidSubstring) {
-        // if start > last element, it means i have reached the end!
+        // if i have reached the end, it means this is valid; otherwise, it'll break the loop earlier!
         if (start == s.length()) {
             return true;
         }
@@ -29,9 +29,8 @@ public class WordBreak {
         }
 
 
-        for (int end = start + 1; end <= s.length(); end++) {
-            if (dict.contains(s.substring(start, end))
-                    && isValidWord(s, end, dict, isValidSubstring)) {
+        for (int i = start; i < s.length(); i++) {
+            if (dict.contains(s.substring(start, i + 1)) && isValidWord(s, i + 1, dict, isValidSubstring)) {
                 return true;
             }
         }
