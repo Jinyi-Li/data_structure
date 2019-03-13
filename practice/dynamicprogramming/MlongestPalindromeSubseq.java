@@ -3,12 +3,12 @@ package practice.dynamicprogramming;
 import java.util.Arrays;
 
 /*
-667. Longest Palindromic Subsequence
-Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000.
+    667. Longest Palindromic Subsequence
+    Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000.
 
-Example
-Given s = "bbbab" return 4
-One possible longest palindromic subsequence is "bbbb".
+    Example
+    Given s = "bbbab" return 4
+    One possible longest palindromic subsequence is "bbbb".
  */
 public class MlongestPalindromeSubseq {
 
@@ -112,7 +112,6 @@ public class MlongestPalindromeSubseq {
 
     public static void main(String[] a){
         MlongestPalindromeSubseq m = new MlongestPalindromeSubseq();
-//        System.out.println(m.longestPalindromeSubseq("bbbab"));
         m.bestSolution("bbbab");
     }
 }
