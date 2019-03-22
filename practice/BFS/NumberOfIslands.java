@@ -67,7 +67,10 @@ class MnumberOfIslands {
                 if (newI >= 0 && newI < grid.length
                         && newJ >= 0 && newJ < grid[newI].length) {
                     if (grid[newI][newJ] == '1') {
-                        grid[newI][newJ] = '0';
+
+                        // to avoid double-count, mark all '1' neighbors as '0'
+                        // because they all belong to 1 same island anyway. 
+                        grid[newI][newJ] = '0';                        
                         nodesToVisit.offer(new Node(newI, newJ));
                     }
                 }

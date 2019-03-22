@@ -1,3 +1,6 @@
+/*
+    At most remove 1 character.
+*/
 class Solution {
     public boolean validPalindrome(String s) {
         int left = 0;

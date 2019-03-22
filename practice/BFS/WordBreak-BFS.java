@@ -1,5 +1,5 @@
 /*
-    runtime O(n^2) = n to iterate each start * n to iterate each end
+    runtime O(n^2) = (n to iterate each start) * (n to iterate each end)
     space O(n) = queue
 */
 public boolean wordBreak(String s, List<String> wordDict){

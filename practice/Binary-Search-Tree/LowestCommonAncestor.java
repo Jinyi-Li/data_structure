@@ -7,6 +7,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+/*
+    A typecal tree-based BFS algorithm.
+*/
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root == null || root == p || root == q){

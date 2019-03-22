@@ -65,8 +65,8 @@ public class RemoveObstacle {
                     Node neighbor = new Node(newRow, newCol);
 
                     if (inBound(numRows, numCols, neighbor)
-                            && lot[newRow][newCol] != 0
-                            && !visited[newRow][newCol]) {
+                            && !visited[newRow][newCol]
+                            && lot[newRow][newCol] != 0) {
                         nodesToVisit.offer(neighbor);
                     }
                 }

@@ -1,3 +1,6 @@
+/*
+    Add minimum number of characters to make String s a palindrome.
+*/
 class Solution {
     public String shortestPalindrome(String s) {
         if(s.length() < 2){
