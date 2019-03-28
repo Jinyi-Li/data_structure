@@ -52,12 +52,14 @@ class MmyAtoi {
             return 0;
         }
         str = str.substring(firstNonZero);                
+        // if overflow, return MAX_VALUE or MIN_VALUE
         if(str.length() > 10){
             return isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         }
 
         // Get the integer value while handling overflow.
         long number = Long.parseLong(str);
+        // check overflow again!!!
         if(!isNegative && number > Integer.MAX_VALUE) {
             return Integer.MAX_VALUE;
         }
