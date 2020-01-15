@@ -20,6 +20,10 @@ class Solution {
     private final int[] Y_MOVES = {1, -1, 0, 0};
     
     public boolean exist(char[][] board, String word) {
+        if(board == null || board.length == 0 || board[0].length == 0 || word == null || word.length() == 0) {
+            return false;
+        }
+
         boolean[][] used = new boolean[board.length][board[0].length];
         
         // try every character in board as the starting character!
@@ -45,6 +49,7 @@ class Solution {
         }                
         
         // if so, continue checking next character in "word"!
+        // 重要。只应该更新used[x][y]，不应该更新used[newRow][newColumn]，那是下一层的事情。
         used[x][y] = true;
         for(int i = 0; i < X_MOVES.length; i++){
             int newX = x + X_MOVES[i];
@@ -54,6 +59,7 @@ class Solution {
             }
         }
         // if all failed, erase this attempt and return!
+        // 重要。如果失败，记得把used[x][y]改回来，因为也没用到。
         used[x][y] = false;
         return false;
     }

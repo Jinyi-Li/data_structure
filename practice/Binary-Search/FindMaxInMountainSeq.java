@@ -1,11 +1,11 @@
 package practice.binarysearch;
 
 /**
- * Find max value in mountain sequence (with a single peek!).
+ * Find max value in mountain sequence (with a single peak!).
  *
  * No duplicates or allow dupes, both OK.
  */
-public class MfindMaxInMountainSeq {
+public class Solution {
     public int mountainSequence(int[] nums) {
         if(nums == null || nums.length == 0){
             return -1;

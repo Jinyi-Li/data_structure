@@ -3,7 +3,7 @@
  *
  * Robot must start from top-left corner.
  * Robot cannot enter trenches.
- * Robot can only  enter flat area.
+ * Robot can only enter flat area.
  * Robot needs to find the one and only one obstacle.
  *
  * Trenches: represented by 1.
@@ -11,9 +11,9 @@
  * Obstacle: represented by 9.
  *
  * {
- * {1, 0, 0},
- * {1, 0, 0},
- * {1, 9, 1}
+ *   {1, 0, 0},
+ *   {1, 0, 0},
+ *   {1, 9, 1}
  * }
  *
  * Return 3 because the total distance to 9 is 3 steps!
@@ -66,7 +66,7 @@ public class RemoveObstacle {
 
                     if (inBound(numRows, numCols, neighbor)
                             && !visited[newRow][newCol]
-                            && lot[newRow][newCol] != 0) {
+                            && lot[newRow][newCol] != 1) {
                         nodesToVisit.offer(neighbor);
                     }
                 }

@@ -1,5 +1,5 @@
 /*
-    Given a positibe integer n, return minimum number of replacements needed for n to become 1.
+    Given a positive integer n, return minimum number of replacements needed for n to become 1.
     Rule 1: if n is even, replace n with (n / 2)
     Rule 2: if n is odd, replace n with either (n + 1) or (n - 1)
 
@@ -22,38 +22,43 @@ class Solution {
             return 0;
         }
         
-        int numSteps = 0;        
-        Queue<Long> toVisit = new LinkedList<>();
-        toVisit.offer(1L * n);
-        Set<Long> visited = new HashSet<>();
+        Queue<Long> toVisit = new LinkedList<>(); // current number n+-1 or n/2
+        toVisit.offer(1L * n); // ensure every number in queue is Long.
         
+        int numSteps = 0;
+        Set<Long> visited = new HashSet<>(); // we don't want to revisit any number
         while(!toVisit.isEmpty()){
             int sizeOfLevel = toVisit.size();
             for(int i = 0; i < sizeOfLevel; i++){
                 Long curr = toVisit.poll();
                 if(curr == 1){
-                    return numSteps;
+                    return numSteps; // found it
                 }
                 
-                // check parity and offer new possibilities
-                if(curr % 2 == 0){
-                    if(!visited.contains(curr / 2)){
-                        visited.add(curr / 2);
-                        toVisit.offer(curr / 2);                        
+                // check parity and note down new numbers to check
+                if(curr % 2 == 0){z
+                    long halfValue = curr / 2;
+                    if(!visited.contains(halfValue)){
+                        update(visited, toVisit, halfValue);
                     }
                 }else{
-                    if(!visited.contains(curr + 1)){
-                        visited.add(curr + 1);
-                        toVisit.offer(curr + 1);
+                    long plusOne = curr + 1;
+                    if(!visited.contains(plusOne)){
+                        update(visited, toVisit, plusOne);
                     }
-                    if(!visited.contains(curr - 1)){
-                        visited.add(curr - 1);
-                        toVisit.offer(curr - 1);
+                    long minusOne = curr - 1;
+                    if(!visited.contains(minusOne)){
+                        update(visited, toVisit, minusOne);
                     }
                 }
             }
             numSteps = numSteps + 1;
         }
         return -1;
+    }
+
+    private void update(Set<Long> visited, Queue<Long> toVisit, Long value) {
+        visited.add(value);
+        toVisit.offer(value);           
     }
 }

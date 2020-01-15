@@ -10,6 +10,8 @@
  * }
  */
 class Solution {
+
+    /* Inorder Traversal  */
     public boolean isValidBST(TreeNode root) {
         if(root == null){
             return true;
@@ -41,5 +43,26 @@ class Solution {
             stack.push(root);
             root = root.left;
         }
+    }
+
+    /* Recursion */
+    public boolean isValidBST(TreeNode root) {
+        return validateSubTree(root, null, null);
+    }
+    
+    private boolean validateSubTree(TreeNode node, Integer lower, Integer upper) {
+        if (node == null) {
+            return true;
+        }
+        
+        if(lower != null && node.val <= lower) {
+            return false;
+        }
+        if(upper != null && node.val >= upper) {
+            return false;
+        }
+        
+        return validateSubTree(node.right, node.val, upper) 
+            && validateSubTree(node.left, lower, node.val);
     }
 }

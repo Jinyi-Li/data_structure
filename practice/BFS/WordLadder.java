@@ -44,7 +44,7 @@ class Solution {
                 }                            
             }
         }
-        return 0;
+        return -1;
     }
 
     private List<String> expand(String current){

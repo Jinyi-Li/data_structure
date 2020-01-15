@@ -2,7 +2,7 @@ package practice.binarysearch;
 
 import java.util.Arrays;
 
-public class EaddBinary {
+public class Solution {
 
     private boolean carry;
     private char[] res;
@@ -52,9 +52,6 @@ public class EaddBinary {
     }
 
     private boolean add(char x, char y){
-        // 1+1+1=(1)1
-        // 1+0+1=(1)0 0+1+1=(1)0
-        // 0+0+0=0 0+0+1=1 1+0+0=1
         if((!carry) && x == '0' && y == '0'){
             // remain uncarrying
             return false;

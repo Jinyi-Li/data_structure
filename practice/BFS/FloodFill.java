@@ -19,7 +19,7 @@ class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
         if(image.length <= sr || image[0].length <= sc || sr < 0 || sc < 0){
             return image;
-        }    
+        }
         
         int color = image[sr][sc];
         

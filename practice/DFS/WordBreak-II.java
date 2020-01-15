@@ -21,39 +21,37 @@
     Explanation: Note that you are allowed to reuse a dictionary word.
 */
 public class Solution {
-    public ArrayList<String> wordBreak(String s, Set<String> dict) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
-        Map<String, ArrayList<String>> memo = new HashMap<String, ArrayList<String>>();
-        return wordBreakHelper(s, dict, memo);
+    public List<String> wordBreak(String s, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        Map<String, List<String>> memo = new HashMap<String, List<String>>();
+        return dfs(s, dict, memo);
     }
 
-    public ArrayList<String> wordBreakHelper(String s,
-                                             Set<String> dict,
-                                             Map<String, ArrayList<String>> memo){
+    public List<String> dfs(String s, Set<String> dict, Map<String, List<String>> memo){
         if (memo.containsKey(s)) {
             return memo.get(s);
         }
         
-        ArrayList<String> results = new ArrayList<String>();
+        List<String> results = new ArrayList<String>();
         
         if (s.length() == 0) {
             return results;
         }
         
+        // 至关重要的一句。它保证了最小的word被加到results里，否则results每层都是空的。
         if (dict.contains(s)) {
             results.add(s);
         }
-        
-        for (int len = 1; len < s.length(); ++len){
-            String word = s.substring(0, len);
+        for (int i = 1; i <= s.length(); i++){
+            String word = s.substring(0, i);
             if (!dict.contains(word)) {
                 continue;
             }
             
-            String suffix = s.substring(len);
-            ArrayList<String> segmentations = wordBreakHelper(suffix, dict, memo);
-            
-            for (String segmentation: segmentations){
+            String suffix = s.substring(i);
+            List<String> segmentations = dfs(suffix, dict, memo);
+            // 这句话只有在subtringResults不为空时才执行。所以一上来先判断dict.contains(s)是很重要的！
+            for (String segmentation : segmentations){
                 results.add(word + " " + segmentation);
             }
         }

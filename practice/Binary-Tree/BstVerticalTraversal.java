@@ -10,40 +10,40 @@
 class Solution {
     public List<List<Integer>> verticalOrder(TreeNode root) {
         if(root == null){
-            return new ArrayList<>();
+            return Collections.emptyList();
+        }
+        Map<Integer, List<Integer>> columnNodesMap = new TreeMap<>();
+        
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.offer(root);
+        Queue<Integer> columnQueue = new LinkedList<>();
+        columnQueue.offer(0);
+        
+        while(!nodeQueue.isEmpty()){
+            TreeNode currentNode = nodeQueue.poll();
+            int columnNumber = columnQueue.poll();
+            if(!columnNodesMap.containsKey(columnNumber)){
+                columnNodesMap.put(columnNumber, new ArrayList<>());
+            }
+            columnNodesMap.get(columnNumber).add(currentNode.val);
+            
+            if(currentNode.left != null){
+                updateQueues(nodeQueue, columnQueue, currentNode.left, columnNumber-1);
+            }
+            if(currentNode.right != null){
+                updateQueues(nodeQueue, columnQueue, currentNode.right, columnNumber+1);
+            }
         }
         
-        Map<Integer, List<Integer>> levelNodesMap = new TreeMap<>();
-        
-        Queue<TreeNode> nodesQueue = new LinkedList<>();
-        Queue<Integer> levelQueue = new LinkedList<>();
-        
-        nodesQueue.offer(root);
-        levelQueue.offer(0);
-        
-        while(!nodesQueue.isEmpty()){
-            TreeNode curr = nodesQueue.poll();
-            int level = levelQueue.poll();
-            
-            if(!levelNodesMap.containsKey(level)){
-                levelNodesMap.put(level, new ArrayList<>());
-            }
-            levelNodesMap.get(level).add(curr.val);
-            
-            if(curr.left != null){
-                nodesQueue.offer(curr.left);
-                levelQueue.offer(level - 1);
-            }
-            if(curr.right != null){
-                nodesQueue.offer(curr.right);
-                levelQueue.offer(level + 1);
-            }
-        }        
-        
-        List<List<Integer>> res = new ArrayList<>();
-        for(List<Integer> nodeList : levelNodesMap.values()){            
-            res.add(nodeList);
+        List<List<Integer>> results = new ArrayList<>();
+        for(List<Integer> nodeList : columnNodesMap.values()){
+            results.add(nodeList);
         }
-        return res;
-    }        
+        return results;
+    }
+    
+    private void updateQueues(Queue<TreeNode> nodeQueue, Queue<Integer> columnQueue, TreeNode node, int columnNumber){
+        nodeQueue.offer(node);
+        columnQueue.offer(columnNumber);
+    }    
 }

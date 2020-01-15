@@ -1,8 +1,34 @@
 import java.util.Stack;
 
+/*
+    Given a tree:
+
+        1
+       / \
+      2   5
+     / \   \
+    3   4   6
+
+    You should return:
+
+    1
+     \
+      2
+       \
+        3
+         \
+          4
+           \
+            5
+             \
+              6
+
+    Preorder traversal. 
+*/
 public class Solution {
 
     /*  Iteration Version  */
+    /* 一个正常的Preorder traversal，只是用一个prev指针指向前一个node，然后把prev和curr连起来就好。 */
     public static Node flattenBST(Node root) {
         if(root == null) {
             return null;
@@ -40,14 +66,15 @@ public class Solution {
             return null;
         }
 
-        // 只要将左右子树先变成链表，再将左边和右边接起来就好！
-        Node leftLast = helper(root.left);
-        Node rightLast = helper(root.right);
-        if (leftLast != null) {
-            leftLast.left = null;
-            leftLast.right = root.right;
-            root.right = root.left;
-            root.left = null;
+        Node leftChild = root.left;
+        Node rightChild = root.right;
+
+        Node leftLastNodeInList = helper(leftChild);
+        Node rightLastNodeInList = helper(rightChild);
+        if (leftLastNodeInList != null) {
+            node.left = null;
+            node.right = leftChild;
+            leftLastNodeInList.right = rightChild;
         }
 
         if (rightLast != null) {

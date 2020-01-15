@@ -9,7 +9,8 @@
  */
 class Solution {
     
-    // Use a ResultType to mimic the behavior of stack!!
+    /* Iteration Version */
+    /* Use a ResultType to mimic the behavior of stack!! */
     private static class ResultType {
         TreeNode node;
         int depth;
@@ -41,5 +42,15 @@ class Solution {
             stack.push(new ResultType(node.right, currentDepth + 1));
         }
         return max;
+    }
+
+    /* Recursion Version */
+    public int maxDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
+        return Math.max(leftMax, rightMax) + 1;
     }
 }
